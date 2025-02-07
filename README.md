@@ -89,7 +89,8 @@
 
 - Herhangi bir öneriniz veya katkınız varsa, lütfen GitHub dan ulaşın! 🚀
 
-
+# 🎮 Bilinen Sorunlar
+- Epic Games Üstünden oyunları başlatamama.
 
 
 
