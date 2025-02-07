@@ -2,7 +2,7 @@
 
 
 
--  Universal Game Launcher, tüm oyun platformlarınızı (Steam, Epic Games, Ubisoft Connect, GOG, Origin, Xbox) tek bir yerden yönetmenize olanak tanır. Kullanıcı dostu arayüzü ve modern tasarımı ile oyunlarınızı kolayca başlatabilirsiniz! 🚀
+-  One Game Launcher, tüm oyun platformlarınızı (Steam, Epic Games, Ubisoft Connect, GOG, Origin, Xbox) tek bir yerden yönetmenize olanak tanır. Kullanıcı dostu arayüzü ve modern tasarımı ile oyunlarınızı kolayca başlatabilirsiniz! 🚀
 
 # 📌 Özellikler
 
@@ -16,7 +16,7 @@
 
 # 🚀 Kurulum ve Kullanım
 
-# 1️⃣ Universal Game Launcher'ı İndirin ve Çalıştırın
+# 1️⃣ One Game Launcher'ı İndirin ve Çalıştırın
 
 - 📥 GameLauncherSetup.exe (https://github.com/Berke-aras/OneGameLauncher/releases/tag/gl)
 
