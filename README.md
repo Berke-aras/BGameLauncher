@@ -2,7 +2,7 @@
 
 
 
--  One Game Launcher, tüm oyun platformlarınızı (Steam, Epic Games, Ubisoft Connect, GOG, Origin, Xbox) tek bir yerden yönetmenize olanak tanır. Oyunlarınızı kolayca başlatabilirsiniz! 🚀
+-  BGame Launcher, tüm oyun platformlarınızı (Steam, Epic Games, Ubisoft Connect, GOG, Origin, Xbox) tek bir yerden yönetmenize olanak tanır. Oyunlarınızı kolayca başlatabilirsiniz! 🚀
 
 # 📌 Özellikler
 
@@ -15,9 +15,9 @@
 
 # 🚀 Kurulum ve Kullanım
 
-## 1️⃣ One Game Launcher'ı İndirin ve Çalıştırın
+## 1️⃣ BGame Launcher'ı İndirin ve Çalıştırın
 
-- 📥 GameLauncherSetup.exe (https://github.com/Berke-aras/OneGameLauncher/releases/tag/gl)
+- 📥 GameLauncherSetup.exe (https://github.com/Berke-aras/BGameLauncher/releases)
 
 ## 2️⃣ Kurulumu Tamamlayın
 
