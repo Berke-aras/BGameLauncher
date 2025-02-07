@@ -16,29 +16,29 @@
 
 # 🚀 Kurulum ve Kullanım
 
-# 1️⃣ One Game Launcher'ı İndirin ve Çalıştırın
+## 1️⃣ One Game Launcher'ı İndirin ve Çalıştırın
 
 - 📥 GameLauncherSetup.exe (https://github.com/Berke-aras/OneGameLauncher/releases/tag/gl)
 
-# 2️⃣ Kurulumu Tamamlayın
+## 2️⃣ Kurulumu Tamamlayın
 
 - Kurulum sihirbazını takip ederek programı bilgisayarınıza yükleyin.
 
-# 3️⃣ İlk Açılışta API Anahtarınızı Girin
+## 3️⃣ İlk Açılışta API Anahtarınızı Girin
 
 - Oyun bilgilerini ve kapak görsellerini almak için GiantBomb API anahtarınızı girmeniz gerekir. API anahtarı almak için aşağıdaki bağlantıyı ziyaret edin:
 
-# 🔗 GiantBomb API
+## 🔗 GiantBomb API
 
 - Eğer API anahtarı girmeden devam ederseniz, oyun bilgileri ve kapak görselleri otomatik olarak çekilmeyecektir.
 
-# 4️⃣ Oyunlarınızı Tarayın ve Keyfini Çıkarın
+## 4️⃣ Oyunlarınızı Tarayın ve Keyfini Çıkarın
 
 - Kurulum tamamlandıktan sonra uygulamayı açın ve "Taramayı Başlat" butonuna tıklayın. Uygulama otomatik olarak bilgisayarınızdaki oyunları algılayacaktır.
 
 
 
-# 5️⃣ Manuel Oyun Ekleme (İsterseniz oyunları kendiniz de ekleyebilirsiniz!)
+## 5️⃣ Manuel Oyun Ekleme (İsterseniz oyunları kendiniz de ekleyebilirsiniz!)
 
 - "Uygulama Ekle" butonuna tıklayın
 
@@ -69,15 +69,15 @@
 
 # ❓ Sıkça Sorulan Sorular
 
-# 1️⃣ API Key Nedir? Girmek Zorunda Mıyım?
+## 1️⃣ API Key Nedir? Girmek Zorunda Mıyım?
 
 - API Key, GiantBomb gibi servislerden oyun bilgisi çekmek için gereklidir. API anahtarı girmeden de programı kullanabilirsiniz, ancak oyun bilgileri ve kapak görselleri görüntülenmez.
 
-# 2️⃣ Taranan Oyunları Nasıl Güncelleyebilirim?
+## 2️⃣ Taranan Oyunları Nasıl Güncelleyebilirim?
 
 - "Yenile" butonuna basarak yeni yüklediğiniz oyunları taratabilirsiniz.
 
-# 3️⃣ Oyunlarımı Başlatamıyorum, Ne Yapmalıyım?
+## 3️⃣ Oyunlarımı Başlatamıyorum, Ne Yapmalıyım?
 
 - Oyun yolunun doğru olduğundan emin olun
 
@@ -85,7 +85,7 @@
 
 - Yönetici olarak çalıştırmayı deneyin
 
-# 🤝 Katkıda Bulunma
+## 🤝 Katkıda Bulunma
 
 - Herhangi bir öneriniz veya katkınız varsa, lütfen GitHub dan ulaşın! 🚀
 
