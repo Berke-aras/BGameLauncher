@@ -276,6 +276,7 @@ class GameLauncher:
         self.root.config(menu=menu_bar)
         settings_menu = tb.Menu(menu_bar, tearoff=0)
         settings_menu.add_command(label="API Key Ayarları", command=self.open_api_key_settings)
+        settings_menu.add_command(label="Tamamen Kapat", command=self.full_exit)
         menu_bar.add_cascade(label="Ayarlar", menu=settings_menu)
 
         # Sol tarafta: Treeview (oyun listesi)
