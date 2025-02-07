@@ -116,7 +116,7 @@ class GameLauncher:
     #########################################
     def load_settings(self):
         try:
-            with open(SETTINGS_FILE, "r", encoding="utf-8") as f:
+            with open("settings.json", "r", encoding="utf-8") as f:
                 settings = json.load(f)
             self.api_key = settings.get("api_key", "")
         except Exception:
@@ -124,7 +124,7 @@ class GameLauncher:
 
     def save_settings(self):
         settings = {"api_key": self.api_key}
-        with open(SETTINGS_FILE, "w", encoding="utf-8") as f:
+        with open("settings.json", "w", encoding="utf-8") as f:
             json.dump(settings, f, indent=4, ensure_ascii=False)
 
     def open_api_key_settings(self):
@@ -1190,7 +1190,9 @@ def is_admin():
 if __name__ == "__main__":
     try:
         if not is_admin():
-            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+            # ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+            app = GameLauncher()
+            app.root.mainloop()
         else:
             app = GameLauncher()
             app.root.mainloop()
