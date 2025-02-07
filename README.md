@@ -2,7 +2,7 @@
 
 
 
--  One Game Launcher, tüm oyun platformlarınızı (Steam, Epic Games, Ubisoft Connect, GOG, Origin, Xbox) tek bir yerden yönetmenize olanak tanır. Kullanıcı dostu arayüzü ve modern tasarımı ile oyunlarınızı kolayca başlatabilirsiniz! 🚀
+-  One Game Launcher, tüm oyun platformlarınızı (Steam, Epic Games, Ubisoft Connect, GOG, Origin, Xbox) tek bir yerden yönetmenize olanak tanır. Oyunlarınızı kolayca başlatabilirsiniz! 🚀
 
 # 📌 Özellikler
 
@@ -11,7 +11,6 @@
 - ✅ El İle Oyun Ekleme: Manuel olarak oyun ekleyip kaldırabilirsiniz
 - ✅ GiantBomb API Entegrasyonu: Oyun bilgilerini ve kapak görsellerini otomatik çeker
 - ✅ Modern UI: Karanlık tema ve bootstrap destekli şık arayüz
-- ✅ Oyun Durumu İzleme: Açık veya kapalı olup olmadığını kontrol eder
 - ✅ Kullanıcı Dostu Ayarlar: API anahtarı yönetimi, resim ve oyun bilgisi düzenleme
 
 # 🚀 Kurulum ve Kullanım
@@ -26,7 +25,7 @@
 
 ## 3️⃣ İlk Açılışta API Anahtarınızı Girin
 
-- Oyun bilgilerini ve kapak görsellerini almak için GiantBomb API anahtarınızı girmeniz gerekir. API anahtarı almak için aşağıdaki bağlantıyı ziyaret edin:
+- Oyun bilgilerini ve kapak görsellerini almak için GiantBomb API anahtarınızı girmeniz gerekir. API anahtarı almak için uygulama icindeki yonlendirmeleri takip edin.
 
 ## 🔗 GiantBomb API
 
@@ -34,8 +33,7 @@
 
 ## 4️⃣ Oyunlarınızı Tarayın ve Keyfini Çıkarın
 
-- Kurulum tamamlandıktan sonra uygulamayı açın ve "Taramayı Başlat" butonuna tıklayın. Uygulama otomatik olarak bilgisayarınızdaki oyunları algılayacaktır.
-
+- Kurulum tamamlandıktan sonra uygulamayı açın. Uygulama otomatik olarak bilgisayarınızdaki oyunları algılayacaktır.
 
 
 ## 5️⃣ Manuel Oyun Ekleme (İsterseniz oyunları kendiniz de ekleyebilirsiniz!)
@@ -89,7 +87,7 @@
 
 - Herhangi bir öneriniz veya katkınız varsa, lütfen GitHub dan ulaşın! 🚀
 
-# 🎮 Bilinen Sorunlar
+# ❌ Bilinen Sorunlar
 - Epic Games Üstünden oyunları başlatamama.
 
 
