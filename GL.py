@@ -19,6 +19,8 @@ locale.setlocale = safe_setlocale
 #########################################
 # Gerekli modüllerin import edilmesi
 #########################################
+import pystray  # Sistem tepsisi için
+
 import json
 import subprocess
 import threading
@@ -26,7 +28,7 @@ import time
 import requests
 import winreg  # Sadece Windows için
 from io import BytesIO
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageOps
 import concurrent.futures
 from tkinter import filedialog  # Tkinter'ın dosya seçme penceresi için
 from tkinter import messagebox  # Mesaj kutuları için
@@ -75,6 +77,15 @@ class GameLauncher:
         self.root.title("Game Launcher")
         self.root.geometry("1000x600")
         self.root.iconbitmap("./game.ico")
+        
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        menu_bar = tb.Menu(self.root)
+        file_menu = tb.Menu(menu_bar, tearoff=0)
+        file_menu.add_command(label="Tamamen Kapat", command=self.full_exit)
+        menu_bar.add_cascade(label="Dosya", menu=file_menu)
+        # (Mevcut Ayarlar menüsünün yanında ekleniyor)
+        self.root.config(menu=menu_bar)
+
 
         # Stil ayarları
         style = ttk.Style()
@@ -194,18 +205,54 @@ class GameLauncher:
                 json.dump(self.games, f, indent=4, ensure_ascii=False)
         except Exception as e:
             print("Scan sonuçları kaydedilirken hata:", e)
+    
+    
+    def on_closing(self):
+        """
+        Pencerenin kapatılma (X) butonuna basıldığında, uygulama gizlenir ve sistem tepsisine yerleştirilir.
+        """
+        self.root.withdraw()
+        if not hasattr(self, 'tray_icon'):
+            try:
+                if os.path.exists("game.ico"):
+                    icon_image = Image.open("game.ico")
+                else:
+                    # Basit bir ikon resmi oluşturma (64x64 beyaz arka plan)
+                    icon_image = Image.new('RGB', (64, 64), color='white')
+                    icon_image = ImageOps.expand(icon_image, border=1, fill='black')
+                menu = pystray.Menu(
+                    pystray.MenuItem("Göster", self.show_window),
+                    pystray.MenuItem("Çıkış", self.exit_app)
+                )
+                self.tray_icon = pystray.Icon("GameLauncher", icon_image, "Game Launcher", menu)
+                threading.Thread(target=self.tray_icon.run, daemon=True).start()
+            except Exception as e:
+                print("Tepsi ikonu oluşturulurken hata:", e)
+    
+    def show_window(self, icon, item):
+        """Sistem tepsisindeki 'Göster' seçeneği tıklandığında pencereyi geri getirir."""
+        self.root.deiconify()
+        if hasattr(self, 'tray_icon'):
+            self.tray_icon.stop()
+            del self.tray_icon
+
+    def exit_app(self, icon, item):
+        """Sistem tepsisindeki 'Çıkış' seçeneği tıklandığında uygulamayı tamamen kapatır."""
+        if hasattr(self, 'tray_icon'):
+            self.tray_icon.stop()
+        self.root.destroy()
+
+    def full_exit(self):
+        """Uygulama içindeki 'Tamamen Kapat' seçeneği çağrıldığında çalışır."""
+        if hasattr(self, 'tray_icon'):
+            self.tray_icon.stop()
+        self.root.destroy()
 
     #########################################
     # Arayüz Oluşturma
     #########################################
     def create_widgets(self):
-        # Menü Çubuğu: Ayarlar menüsü ekleniyor.
-        menu_bar = tb.Menu(self.root)
-        self.root.config(menu=menu_bar)
-        settings_menu = tb.Menu(menu_bar, tearoff=0)
-        settings_menu.add_command(label="API Key Ayarları", command=self.open_api_key_settings)
-        menu_bar.add_cascade(label="Ayarlar", menu=settings_menu)
-
+        # Left frame tanımı erken yapılmalı
         self.paned = ttk.Panedwindow(self.root, orient='horizontal')
         self.paned.pack(fill='both', expand=True, padx=10, pady=10)
 
@@ -214,6 +261,22 @@ class GameLauncher:
 
         self.paned.add(self.left_frame, weight=3)
         self.paned.add(self.right_frame, weight=1)
+
+        # --- Arama Çubuğu ---
+        search_frame = ttk.Frame(self.left_frame)
+        search_frame.pack(fill='x', padx=5, pady=5)
+        ttk.Label(search_frame, text="Ara:").pack(side='left', padx=5)
+        self.search_var = tb.StringVar()
+        search_entry = ttk.Entry(search_frame, textvariable=self.search_var)
+        search_entry.pack(side='left', fill='x', expand=True, padx=5)
+        search_entry.bind("<KeyRelease>", self.on_search)
+
+        # Menü Çubuğu: Ayarlar menüsü ekleniyor.
+        menu_bar = tb.Menu(self.root)
+        self.root.config(menu=menu_bar)
+        settings_menu = tb.Menu(menu_bar, tearoff=0)
+        settings_menu.add_command(label="API Key Ayarları", command=self.open_api_key_settings)
+        menu_bar.add_cascade(label="Ayarlar", menu=settings_menu)
 
         # Sol tarafta: Treeview (oyun listesi)
         self.tree = ttk.Treeview(self.left_frame, columns=('Name', 'Launcher', 'Path'), show='headings')
@@ -254,6 +317,20 @@ class GameLauncher:
         self.status_label = ttk.Label(self.right_frame, text="", font=('Segoe UI', 10))
         self.status_label.pack(pady=5, anchor="nw")
 
+    
+    def on_search(self, event):
+        """
+        Arama çubuğuna girilen metne göre, self.all_games (tam liste) üzerinden filtreleme yapar.
+        """
+        query = self.search_var.get().lower()
+        if query:
+            filtered = [g for g in self.all_games if query in g.get('name', '').lower()]
+        else:
+            filtered = self.all_games
+        self.tree.delete(*self.tree.get_children())
+        for game in filtered:
+            self.tree.insert('', 'end', iid=game['unique'], values=(game['name'], game.get('launcher', ''), game['path']))
+    
     #########################################
     # Yenileme (Refresh) Metodu - Değişiklikleri saklama/sıfırlama sorusu ekleniyor.
     #########################################
@@ -571,12 +648,17 @@ class GameLauncher:
         return list(deduped.values())
 
     def update_treeview(self, games):
-        self.games = games
+        # Taranan tüm oyunları saklamak için:
+        self.all_games = games
+        query = self.search_var.get().lower() if hasattr(self, 'search_var') else ""
+        if query:
+            filtered = [g for g in games if query in g.get('name', '').lower()]
+        else:
+            filtered = games
         self.tree.delete(*self.tree.get_children())
-        for game in self.games:
-            # Eğer aynı unique id ile kayıt varsa, atlamaya çalışalım.
-            if not self.tree.exists(game['unique']):
-                self.tree.insert('', 'end', iid=game['unique'], values=(game['name'], game.get('launcher', ''), game['path']))
+        for game in filtered:
+            self.tree.insert('', 'end', iid=game['unique'], values=(game['name'], game.get('launcher', ''), game['path']))
+
 
     def threaded_scan_games(self):
         def task():
