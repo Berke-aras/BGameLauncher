@@ -73,10 +73,11 @@ class GameLauncher:
         }
         
         # Karanlık tema "cyborg" ile modern pencere oluşturuyoruz.
-        self.root = tb.Window(themename="cyborg")
+        self.root = tb.Window(themename="solar")
         self.root.title("Game Launcher")
         self.root.geometry("1000x600")
         self.root.iconbitmap("./game.ico")
+        self.style = tb.Style()
         
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         menu_bar = tb.Menu(self.root)
@@ -121,6 +122,23 @@ class GameLauncher:
         
         # Şu an izlenen oyunun unique ID'sini tutmak için:
         self.current_monitored_game = None
+        #########################################
+        # Tema Seçici (ttkbootstrap tüm temaları)
+        #########################################
+        theme_label = ttk.Label(self.right_frame, text="Tema Seçici:", font=('Segoe UI', 10, 'bold'))
+        theme_label.pack(pady=5)
+
+        available_themes = self.style.theme_names()
+        self.theme_selector = ttk.Combobox(self.right_frame, values=available_themes, state="readonly")
+        self.theme_selector.set(self.style.theme_use())
+        self.theme_selector.pack(pady=5)
+        self.theme_selector.bind("<<ComboboxSelected>>", self.on_theme_change)
+
+
+    def on_theme_change(self, event):
+        new_theme = self.theme_selector.get()
+        self.style.theme_use(new_theme)
+        messagebox.showinfo("Tema Değiştirildi", f"Tema '{new_theme}' olarak değiştirildi.")
 
     #########################################
     # Ayarlar: API Key Yükleme ve Kaydetme
