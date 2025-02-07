@@ -1190,9 +1190,7 @@ def is_admin():
 if __name__ == "__main__":
     try:
         if not is_admin():
-            # ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-            app = GameLauncher()
-            app.root.mainloop()
+            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
         else:
             app = GameLauncher()
             app.root.mainloop()
