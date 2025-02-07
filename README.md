@@ -89,9 +89,8 @@
 
 - Herhangi bir öneriniz veya katkınız varsa, lütfen GitHub dan ulaşın! 🚀
 
-# 💻 GitHub: Universal Game Launcher (Bağlantıyı ekleyin)
 
-# 📧 İletişim: support@gamelauncher.com
+
 
 
 
